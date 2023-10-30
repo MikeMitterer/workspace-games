@@ -1,0 +1,1 @@
+../mobiad/yarn.config.cjs

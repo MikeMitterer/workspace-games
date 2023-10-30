@@ -1,0 +1,33 @@
+{
+  "name": "Games",
+  "packageManager": "yarn@4.0.1",
+  "private": true,
+  "workspaces": [
+    "packages/SpaceInvaders"
+  ],
+  "installConfig": {
+    "hoistingLimits": "dependencies"
+  },
+  "scripts": {
+    "install:pkg": "yarn workspaces foreach --exclude . -A exec yarn install",
+    "install:force": "yarn workspaces foreach --exclude . -A exec rm -rf node_modules && rm -f yarn.lock && yarn install",
+    "version:all": "yarn version:remote:full | awk -f .scripts/to_version.awk",
+    "version:pkg": "yarn workspaces foreach --exclude . -A run version:pkg",
+    "version:pkg:full": "yarn workspaces foreach --exclude . -A run version:pkg:full",
+    "version:remote": "yarn workspaces foreach --exclude . -A run version:remote",
+    "version:remote:full": "yarn workspaces foreach --exclude . -A run version:remote:full",
+    "update:browser": "yarn workspaces foreach --exclude . -A run update:browser",
+    "update:templates": "yarn workspaces foreach --exclude . -A run update:templates",
+    "clean:jest": "yarn workspaces foreach --exclude . -A run clean:jest",
+    "lint": "yarn workspaces foreach --exclude . -A run lint",
+    "test:unit": "yarn workspaces foreach --exclude . -A run test:unit",
+    "build": "yarn workspaces foreach --exclude . -A run build",
+    "git": "yarn workspaces foreach --exclude . -A exec git",
+    "yarn": "yarn workspaces foreach --exclude . -A exec yarn",
+    "yarn:lock": "yarn workspaces foreach --exclude . -A exec touch yarn.lock",
+    "zsh": "yarn workspaces foreach --exclude . -A exec zsh"
+  },
+  "dependencies": {
+    "@yarnpkg/types": "^4.0.0-rc.50"
+  }
+}
